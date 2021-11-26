@@ -1,37 +1,84 @@
 <?php
 
-# BASE CLASS
-
-class Surfboard
+# BASE CLASS ------------------
+class Board
 {
-  #
-  # PROPERTIES
-  public $brand;
+  public static $brand;
   public $modelName;
   public $size;
   public $width;
   public $thickness;
   public $volume;
-  public $tailType;
-  public $finsSystem;
-  public $finsNumber;
 
-  # METHODS
+  # CONSTRUCTOR ------------
+
+  public function __construct(
+    string $brand,
+    string $modelName,
+    string $size,
+    string $width,
+    string $thickness,
+    string $volume
+
+  ) {
+    $this->brand = $brand;
+    $this->modelName = $modelName;
+    $this->size = $size;
+    $this->width = $width;
+    $this->thickness = $thickness;
+    $this->volume = $volume;
+  }
+
+  // FUNCTION TO GET BRAND NAME------------------
   public function getBrand()
   {
     return $this->brand;
   }
 
-  // FUNCTION TO REMOVE FINS (MIN 0)
+  // FUNCTION TO GET VOLUME IN LITERS
+  public function getVolume()
+  {
+    return $this->volume;
+  }
+}
+
+
+
+class Surf extends Board
+{
+
+  const LOGO = "PYZEL Logo: <img src='https://www.pyzelsurfboards.com/images/logo.png'/>";
+  # PROPERTIES ------------------
+  public $tailType;
+  public $finsSystem;
+  public $finsNumber;
+
+  public static $leashHolder = "Standard";
+
+  # METHODS ----------
+  # CONSTRUCTOR ------------
+  public function __construct(
+    string $tailType,
+    string $finsSystem,
+    int $finsNumber
+  ) {
+    parent::__construct("Pyzel", "Ghost",  "5' 8''", "18 3/4", "2 5/16", "24,7 Litros");
+    $this->tailType = $tailType;
+    $this->finsSystem = $finsSystem;
+    $this->finsNumber = $finsNumber;
+  }
+
+
+  // FUNCTION TO REMOVE FINS (MIN 0)------------------
 
   public function removeFins()
   {
-
     $minFins = "You have removed all your fins";
 
-    if ($this->finsNumber === "You have setted all your fins") {
+    if ($this->finsNumber === "You have set all your fins") {
       $this->finsNumber = 4;
     }
+
     if ($this->finsNumber === 0) {
       $this->finsNumber = $minFins;
     } else if ($this->finsNumber !== 0) {
@@ -41,14 +88,14 @@ class Surfboard
     return $this->finsNumber;
   }
 
-  // FUNCTION TO ADD MORE FINS (MAX 5)
+  // FUNCTION TO ADD MORE FINS (MAX 5)------------------
   public function addFins()
   {
     if ($this->finsNumber === "You have removed all your fins") {
       $this->finsNumber = 1;
     }
 
-    $maxFins = "You have setted all your fins";
+    $maxFins = "You have set all your fins";
 
     if ($this->finsNumber === 5) {
       $this->finsNumber = $maxFins;
@@ -59,76 +106,41 @@ class Surfboard
 
     return $this->finsNumber;
   }
-
-  public function getVolume()
-  {
-    return $this->volume;
-  }
-
-  # CONSTRUCTOR
-  public function __construct(string $brand, string $modelName, string $volume)
-  {
-    $this->brand = $brand;
-    $this->modelName = $modelName;
-    $this->volume = $volume;
-  }
-
-  # DESTRUCTOR
-
-
 }
 
-$newSurfboard = new Surfboard("Pyzel", "Ghost", "24,7L");
 
-// $newSurfboard->brand = "Pyzel";
-// $newSurfboard->modelName = "Ghost";
-$newSurfboard->size = "5' 8''";
-$newSurfboard->width = "18 3/4";
-$newSurfboard->thickness = "2 5/1";
-// $newSurfboard->volume = "24.7L";
-$newSurfboard->tailType = "Round Pin";
-$newSurfboard->finsSystem = "Futures";
-$newSurfboard->finsNumber = 3;
-
+$newSurfboard = new Surf("Round Spin", "Futures", 3);
 
 echo "<pre>";
+echo "<img src='https://www.pyzelsurfboards.com/images/logo.png' width='200'";
+var_dump($newSurfboard) . "\n";
+echo "Leash Holder: " . Surf::$leashHolder;
 
-var_dump($newSurfboard);
+// echo "This is the volume" . "\n";
 
-echo "<br>";
+// echo $newSurfboard->getVolume();
 
-echo $newSurfboard->getVolume();
+// echo "<br>";
+// echo "<br>";
 
-echo "<br>";
+// echo "Change your Fins!" . "\n";
+// echo "Removed 1 fin! Nº of Fins = " . $newSurfboard->removeFins() . "\n";
+// echo "<br>";
+// echo "Removed 1 fin! Nº of Fins = " . $newSurfboard->removeFins() . "\n";
+// echo "<br>";
+// echo "Removed 1 fin! Nº of Fins = " . $newSurfboard->removeFins() . "\n";
+// echo "<br>";
 
-echo $newSurfboard->removeFins();
+// echo  $newSurfboard->removeFins() . "\n";
 
-echo "<br>";
+// echo "<br>";
 
-echo $newSurfboard->finsNumber;
-
-echo "<br>";
-echo $newSurfboard->removeFins();
-echo "<br>";
-
-echo $newSurfboard->removeFins();
-
-echo "<br>";
-
-echo $newSurfboard->removeFins();
-
-echo "<br>";
-
-echo $newSurfboard->addFins();
-
-echo "<br>";
-
-echo $newSurfboard->addFins();
-echo "<br>";
-
-echo $newSurfboard->addFins();
-echo "<br>";
-echo $newSurfboard->addFins();
-echo "<br>";
-echo $newSurfboard->addFins();
-echo "<br>";
+// echo "Added 1 fin! Nº of Fins = " . $newSurfboard->addFins() . "\n";
+// echo "<br>";
+// echo "Added 1 fin! Nº of Fins = " . $newSurfboard->addFins() . "\n";
+// echo "<br>";
+// echo "Added 1 fin! Nº of Fins = " . $newSurfboard->addFins() . "\n";
+// echo "<br>";
+// echo "Added 1 fin! Nº of Fins = " . $newSurfboard->addFins() . "\n";
+// echo "<br>";
+// echo $newSurfboard->addFins();
