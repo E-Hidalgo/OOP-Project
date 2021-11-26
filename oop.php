@@ -22,21 +22,42 @@ class Surfboard
     return $this->brand;
   }
 
+  // FUNCTION TO REMOVE FINS (MIN 0)
+
   public function removeFins()
   {
-    if ($this->finsNumber === 0) {
-      return $this->finsNumber = "The number of fins is " . 0 . ". You have removed all the fins";
+
+    $minFins = "You have removed all your fins";
+
+    if ($this->finsNumber === "You have setted all your fins") {
+      $this->finsNumber = 4;
     }
-    return $this->finsNumber--;
+    if ($this->finsNumber === 0) {
+      $this->finsNumber = $minFins;
+    } else if ($this->finsNumber !== 0) {
+      $this->finsNumber--;
+    }
+
+    return $this->finsNumber;
   }
 
+  // FUNCTION TO ADD MORE FINS (MAX 5)
   public function addFins()
   {
+    if ($this->finsNumber === "You have removed all your fins") {
+      $this->finsNumber = 1;
+    }
+
+    $maxFins = "You have setted all your fins";
 
     if ($this->finsNumber === 5) {
-      return $this->finsNumber = "The number of fins is " . 5 . ". You have setted all the fins";
+      $this->finsNumber = $maxFins;
+    } else if ($this->finsNumber <= 5) {
+
+      $this->finsNumber++;
     }
-    return $this->finsNumber++;
+
+    return $this->finsNumber;
   }
 
   public function getVolume()
@@ -87,8 +108,27 @@ echo "<br>";
 echo $newSurfboard->finsNumber;
 
 echo "<br>";
+echo $newSurfboard->removeFins();
+echo "<br>";
+
+echo $newSurfboard->removeFins();
+
+echo "<br>";
+
+echo $newSurfboard->removeFins();
+
+echo "<br>";
 
 echo $newSurfboard->addFins();
+
+echo "<br>";
+
 echo $newSurfboard->addFins();
+echo "<br>";
+
 echo $newSurfboard->addFins();
+echo "<br>";
 echo $newSurfboard->addFins();
+echo "<br>";
+echo $newSurfboard->addFins();
+echo "<br>";
